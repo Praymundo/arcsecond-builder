@@ -1,0 +1,11 @@
+version: '3.7'
+
+services:
+    arcsecond-builder:
+        build: .
+        image: arcsecond-builder
+        container_name: arcsecond-builder
+        network_mode: bridge
+        restart: "no"
+        volumes: 
+            - ../dist:/dist
