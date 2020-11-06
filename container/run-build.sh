@@ -16,8 +16,7 @@ mkdir -p "${BUILDER_DIR}"
 git clone "https://github.com/francisrstokes/arcsecond.git" "${BUILDER_DIR}"
 
 cat << EOF > "${BUILDER_DIR}/${ENTRY_FILENAME}"
-const _Arcsecond = require('./index.mjs');
-self.Arcsecond = _Arcsecond;
+export const Arcsecond = require('./index.mjs');
 EOF
 
 cat << EOF > "${BUILDER_DIR}/${CONFIG_FILENAME}"
@@ -27,7 +26,8 @@ module.exports = {
     "Arcsecond": "./${ENTRY_FILENAME}"
   },
   "output": {
-    "filename": "[name].js"
+    "filename": "[name].js",
+    "libraryTarget": "umd",
   }
 };
 EOF
